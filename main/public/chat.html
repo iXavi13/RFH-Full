@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Rooms For Humanity</title>
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+      <link rel="stylesheet" href="./assets/css/theme.css">
+      <link rel="stylesheet" href="styles/chat.css">
+      <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,600,700" rel="stylesheet">
+  </head>
+  <body>
+    <!--<a class="navbar-brand mb-0 h1 navbar-icons" href="index.html" style="left: 1%;"><img src="img/rfh_logo.png" height="40"/></a>-->
+    
+    <div class="modal modal-fluid fade" id="roomModal" tabindex="-1" role="dialog" aria-labelledby="joinModal">
+        <div class="modal-dialog modal-dialog-centered modal-lg" style="margin: 0 auto; width: 70%;" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8 text-center py-4" id="infoContainer">
+                            <h4 class="heading h3">Room Name</h4>
+                            <h3 class="lead text-muted" id="roomNameID">
+                                
+                            </h3>
+			    <p>Share this room name with other participants!
+			    </p>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" id="closeModalButton">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div style="" id="infoContainer">
+        <h3 class="text-center">Room Name</h3>
+        <h4 class="text-center" id="roomNameID" style="font-size: 35px;">BigDogThree</h4>
+    </div> -->
+      
+    <div class="utilityIcons show">
+        <span class="fa-stack fa-2x" id="micButton">
+          <i class="fa fa-square fa-stack-2x iconBack"></i>
+          <i class="fa fa-microphone fa-stack-1x micIcon" style="color:black;"></i>
+        </span>
+        <span class="fa-stack fa-2x">
+          <i class="fa fa-square fa-stack-2x iconBack"></i>
+          <i class="fa fa-video fa-stack-1x vidIcon" style="color:black;"></i>
+        </span>
+        <span class="fa-stack fa-2x" id="disconnectButton">
+          <i class="fa fa-square fa-stack-2x iconBack"></i>
+          <i class="fa fa-phone-slash fa-stack-1x phoneIcon" style="color:black;"></i>
+        </span>
+    </div>
+
+    <div class="row" id="remote-video-div">
+      <div id="local-video-div"></div>
+    </div>
+
+    <br>
+
+    <br><br>
+
+
+    <!-- REQUIRED SCRIPTS  -->
+    <!-- <script src="js/jquery-3.2.1.min.js"></script> -->
+    <!--<script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+    <script src="./assets/vendor/bootstrap/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://api.callstats.io/static/callstats.min.js"></script>
+    <script src="src/streamEng.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCx8Ej3-j-XDDhGgZ7vv5JMVqr86jIrdFU",
+        authDomain: "blink-chat-6f619.firebaseapp.com",
+        databaseURL: "https://blink-chat-6f619.firebaseio.com",
+        projectId: "blink-chat-6f619",
+        storageBucket: "blink-chat-6f619.appspot.com",
+        messagingSenderId: "441138336561"
+      };
+      firebase.initializeApp(config);
+      var provider = new firebase.auth.GoogleAuthProvider();
+      var database = firebase.database();
+    </script>
+    <script>
+        var timedelay = 1;
+        var _delay = setInterval(delayCheck, 500);
+
+        $('body').on('mousemove', showAllEvent);
+
+        function delayCheck() {
+          if (timedelay == 3) {
+              
+            $('.utilityIcons').addClass('hide');
+            $('.utilityIcons').removeClass('show');
+            timedelay = 1;
+          }
+          timedelay = timedelay + 1;
+        }
+
+        function showAllEvent() {
+          $('.utilityIcons').removeClass('hide');
+          $('.utilityIcons').addClass('show');
+          timedelay = 1;
+          clearInterval(_delay);
+          _delay = setInterval(delayCheck, 500);
+        }  
+    </script>
+
+    <script src="src/main.js"></script>
+  </body>
+</html>

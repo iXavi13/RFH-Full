@@ -1,0 +1,76 @@
+html,body{
+    height: 100%;
+    width: 100%;
+}
+body {
+  font-size: 14px;
+  overflow: hidden;
+  background-color: black;
+    
+}
+
+.row{
+  height: 100%;
+}
+
+video{
+  width: 100%;
+}
+
+#local-video-div, .videoStream{
+  align-self: center;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  height: 100%;
+}
+
+.utilityIcons{
+    display: block;
+    position: fixed;
+    width: auto;
+    height: auto;
+    left: 50%;
+    transform: translate(-50%,0);
+    bottom: 1%;
+    background-color: transparent;
+    z-index: 10;
+}
+
+.utilityIcons span:hover{
+    color: rgba(255,255,255,0.6);
+}
+
+.phoneIcon{
+    color:red !important;
+}
+
+.micIcon, .vidIcon{
+    color: white !important;
+}
+
+.fa-microphone-slash{
+    color: red !important;
+}
+
+.show {
+ opacity: 1; 
+ cursor: pointer;
+ pointer-events: all;
+}
+
+.hide {
+  color: black;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.navbar-icons{
+    position: fixed; 
+    z-index: 101; 
+    opacity: 0.4; 
+    top: 1%;
+}
+
