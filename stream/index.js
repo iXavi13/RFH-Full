@@ -1,10 +1,13 @@
 // const HTTPS_PORT = 4000; 
 // const MAIN_SERVER_ADDR = "http://localhost:3000";
 // const STREAM_SERVER_ADDR = "https://localhost:4000";
-const HTTPS_PORT = 8443;
-const MAIN_SERVER_ADDR = "http://roomsforhumanity.org:8080";
-const STREAM_SERVER_ADDR = "https://stream.roomsforhumanity.org";
-const DEV_SERVER_ADDR = "http://dev.roomsforhumanity.org:8080";
+const HTTPS_PORT = 4000; 
+const MAIN_SERVER_ADDR = "http://localhost:8080";
+const STREAM_SERVER_ADDR = "https://localhost:4000";
+//const HTTPS_PORT = 8443;
+//const MAIN_SERVER_ADDR = "http://roomsforhumanity.org:8080";
+//const STREAM_SERVER_ADDR = "https://stream.roomsforhumanity.org";
+//const DEV_SERVER_ADDR = "http://dev.roomsforhumanity.org:8080";
 
 const express = require('express');
 const https = require('https');
@@ -129,14 +132,6 @@ mySocket.on('sync', function(rcvdUsers, rcvdRooms) {
     rooms = rcvdRooms;
 });
 
-let devSocket = io_client.connect(DEV_SERVER_ADDR);
-devSocket.emit('connect service', STREAM_SERVER_ADDR, "stream");
-
-devSocket.on('sync', function(rcvdUsers, rcvdRooms){
-    user = rcvdUsers;
-    rooms = rcvdRooms;
-});
-
 mySocket.on('disconnect', function() {
     // console.log("DISCONNECTED");
     // console.log(mySocket.connected);
@@ -148,19 +143,6 @@ mySocket.on('disconnect', function() {
         }
         console.log("Trying to connect.");
         mySocket = io_client.connect(MAIN_SERVER_ADDR);
-    }, 300);
-});
-
-devSocket.on('disconnect', function() {
-    var tryToConnect = setInterval(function() {
-	if(devSocket.connected){
-	    clearInterval(tryToConnect);
-	    console.log("Dev Connected");
-	    devSocket.emit('connect service', STREAM_SERVER_ADDR, "stream");
-	}
-
-	console.log("Trying to connect.");
-	devSocket = io_client.connect(DEV_SERVER_ADDR);
     }, 300);
 });
 

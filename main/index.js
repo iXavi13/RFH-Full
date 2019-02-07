@@ -1,4 +1,4 @@
-const HTTPS_PORT = 8443;
+const HTTPS_PORT = 4000;
 const HTTP_PORT = 8080;
 const COLLECTION = "blink-main-rooms";
 //const HTTPS_PORT = 4000;
