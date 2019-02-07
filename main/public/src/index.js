@@ -1,5 +1,5 @@
 function goToChat(roomname) {
-  window.location.href = "https://" + window.location.hostname + "/chat.html#" + roomname;
+  window.location.href = "https://" + window.location.hostname + ":4040/chat.html#" + roomname;
 }
 
 $(document).ready(function() {
