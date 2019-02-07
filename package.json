@@ -1,0 +1,19 @@
+{
+  "name": "rfhmaster",
+  "version": "1.0.0",
+  "description": "RFH code in February 2019",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iXavi13/RFH-Full.git"
+  },
+  "author": "Xavier Rosario, Glen Abellana & Ruben Martins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iXavi13/RFH-Full/issues"
+  },
+  "homepage": "https://github.com/iXavi13/RFH-Full#readme"
+}
