@@ -38,8 +38,8 @@ let rooms = {
 /************ SERVER SETUP *************/
 
 const certOptions = {
-    key: fs.readFileSync('public/certs/key.pem'),
-    cert: fs.readFileSync('public/certs/cert.pem')
+    key: fs.readFileSync('./public/certs/key.pem'),
+    cert: fs.readFileSync('./public/certs/cert.pem')
 };
 
 let app = express();
