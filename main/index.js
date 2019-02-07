@@ -3,6 +3,7 @@ const HTTP_PORT = 8080;
 const COLLECTION = "blink-main-rooms";
 //const HTTPS_PORT = 4000;
 //const HTTP_PORT = 80;
+//just add ths comment
 
 const nodeStatic = require('node-static');
 const https = require('https');
